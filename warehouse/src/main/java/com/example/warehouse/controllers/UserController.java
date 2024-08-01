@@ -36,7 +36,7 @@ public class UserController {
         if (user != null) {
             user.setUsername(userDetails.getUsername());
             user.setPassword(userDetails.getPassword());
-            user.setRole(userDetails.getRole());
+            user.setCompany(userDetails.getCompany());
             return UsersRepository.save(user);
         }
         return null;
