@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class User {
+@Table(name = "users")
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -16,16 +17,24 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String role;
+    @Column(unique = true, nullable = false)
+    private String company;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Long getId() {
+    public Users (){}
+    public Users(int id, String username, String password, String company){
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.company = company;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,12 +54,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getCompany() {
+        return company;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public LocalDateTime getCreatedAt() {

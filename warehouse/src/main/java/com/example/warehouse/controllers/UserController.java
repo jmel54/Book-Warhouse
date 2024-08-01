@@ -3,8 +3,8 @@ package com.example.warehouse.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.warehouse.models.User;
-import com.example.warehouse.repositories.UserRepository;
+import com.example.warehouse.models.Users;
+import com.example.warehouse.repositories.UsersRepository;
 
 import java.util.List;
 
@@ -13,37 +13,37 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository UsersRepository;
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<Users> getAllUsers() {
+        return UsersRepository.findAll();
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public Users createUser(@RequestBody Users user) {
+        return UsersRepository.save(user);
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userRepository.findById(id).orElse(null);
+    public Users getUserById(@PathVariable Long id) {
+        return UsersRepository.findById(id).orElse(null);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        User user = userRepository.findById(id).orElse(null);
+    public Users updateUser(@PathVariable Long id, @RequestBody Users userDetails) {
+        Users user = UsersRepository.findById(id).orElse(null);
         if (user != null) {
             user.setUsername(userDetails.getUsername());
             user.setPassword(userDetails.getPassword());
             user.setRole(userDetails.getRole());
-            return userRepository.save(user);
+            return UsersRepository.save(user);
         }
         return null;
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+        UsersRepository.deleteById(id);
     }
 }

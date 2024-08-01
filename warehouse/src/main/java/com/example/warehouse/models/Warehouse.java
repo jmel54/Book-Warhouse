@@ -3,11 +3,12 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "warehouse")
 public class Warehouse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false)
     private String name;
@@ -19,15 +20,15 @@ public class Warehouse {
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
-    private User manager;
+    private Users manager;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -55,11 +56,11 @@ public class Warehouse {
         this.capacity = capacity;
     }
 
-    public User getManager() {
+    public Users getManager() {
         return manager;
     }
 
-    public void setManager(User manager) {
+    public void setManager(Users manager) {
         this.manager = manager;
     }
 

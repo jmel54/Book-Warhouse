@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "book")
 public class Book {
-
+    //don't auto generate value, use ISBN natural primary key
     @Id
     private String isbn;
 
@@ -25,6 +26,7 @@ public class Book {
 
     private Integer quantity = 0;
 
+    //log entry
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public String getIsbn() {
