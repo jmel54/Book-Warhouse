@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import MainPage from './components/MainPage/MainPage'
-import EditBookModal from './components/EditBookModal'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import MainPage from './components/MainPage'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-
-    <FetchTest/>
-  
+    <MainPage/>
     </>
   )
 }
