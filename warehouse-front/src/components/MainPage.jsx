@@ -7,17 +7,19 @@ const MainPage = () => {
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+  //get initial info of company and 
+  const [info, setinfo] = useState([]);
 
   return (
     <Container>
       <header className="d-flex justify-content-between align-items-center py-3">
         <button className="btn btn-outline-secondary">Sign out</button>
         <div>
-          <h2>Company Name</h2>
-          <p>Location</p>
+          <h2>Phoenix Publishings</h2>
+          <p>Phoenix, AZ</p>
         </div>
         <div>
-          <p>Current user: <strong>Username</strong></p>
+          <p>Current user: <br/><strong>Melwin</strong></p>
         </div>
       </header>
 
@@ -30,7 +32,7 @@ const MainPage = () => {
           <Col xs="auto">
             <button className="btn btn-outline-primary mx-2">←</button>
           </Col>
-          
+
           <Col>
             <WarehouseManager />
           </Col>

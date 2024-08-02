@@ -35,6 +35,12 @@ public class WarehouseController {
         return warehouseService.getWarehouseById(id);
     }
 
+    //get total books and check on frontend
+    @GetMapping("/{id}/totalBooks")
+    public int getTotalBookQuantityInWarehouse(@PathVariable Integer id) {
+        return warehouseService.getTotalBookQuantityInWarehouse(id);
+    }
+
     
     @GetMapping("/{id}/books")
     public List<Book> getBooksByWarehouseId(@PathVariable Integer id) {

@@ -1,6 +1,7 @@
 package com.example.warehouse.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ public class WarehouseService {
 
     @Autowired
     private WarehouseRepository warehouseRepository;
-    
 
     @Autowired
     private BookRepository bookRepository;
@@ -23,7 +23,6 @@ public class WarehouseService {
     public List<Warehouse> getAllWarehouses() {
         return warehouseRepository.findAll();
     }
-
         public List<Book> getBooksByWarehouseId(Integer warehouseId) {
         return bookRepository.findByWarehouseId(warehouseId);
     }
@@ -34,6 +33,11 @@ public class WarehouseService {
 
     public Warehouse getWarehouseById(Integer id) {
         return warehouseRepository.findById(id).orElse(null);
+    }
+    //helper function to verify that total sum of books
+    public int getTotalBookQuantityInWarehouse(Integer warehouseId) {
+        List<Book> books = bookRepository.findByWarehouseId(warehouseId);
+        return books.stream().mapToInt(Book::getQuantity).sum();
     }
 
     public Warehouse updateWarehouse(Integer id, Warehouse warehouseDetails) {
