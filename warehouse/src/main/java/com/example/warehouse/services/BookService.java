@@ -31,7 +31,6 @@ public class BookService {
     }
 
     public Book createBook(Book book) {
-        warehouseService
         return bookRepository.save(book);
     }
 
@@ -50,6 +49,7 @@ public class BookService {
             book.setWarehouse(bookDetails.getWarehouse());
             book.setQuantity(bookDetails.getQuantity());
             return bookRepository.save(book);
+        
         }
         return null;
     }

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import EditBookModal from './EditBookModal'
+import AddBookModal from './AddBookModal'
 const BookTable = ({ warehouseId, warehousename }) => {
 
     const [showModal, setShowModal] = useState(false);
     const [Books, setBooks] = useState([]);
-    const [editBook, setEditBook] = useState();
+    const [editBook, setEditBook] = useState(null);
 
     //modal states
     const handleShow = (book) => {
+        
         setEditBook(book);
         setShowModal(true);
     };
@@ -21,7 +23,9 @@ const BookTable = ({ warehouseId, warehousename }) => {
         if (warehouseId) {
             fetch(`http://localhost:8080/warehouse/${warehouseId}/books`)
                 .then(response => response.json())
-                .then(data => setBooks(data))
+                .then(data => {
+                    setBooks(data)
+                })
                 .catch(error => console.error('Error fetching books:', error));
         }
     }, [warehouseId]);
@@ -42,10 +46,11 @@ const BookTable = ({ warehouseId, warehousename }) => {
                 </thead>
                 <tbody>
                     {Books.map(book => (
+
+                    
                         <tr key={book.isbn}>
                             <td>
-                                <a href="#" onClick={() => handleShow(book.isbn)}>{book.isbn}</a>
-
+                                <a href="#" onClick={() => handleShow(book)}>{book.isbn}</a>
                             </td>
                             <td>{book.title}</td>
                             <td>{book.author}</td>
@@ -56,7 +61,13 @@ const BookTable = ({ warehouseId, warehousename }) => {
                 </tbody>
             </table>
             <div>
-            <EditBookModal show={showModal} handleClose={handleClose} isbn={editBook} />
+        
+                <EditBookModal show={showModal} handleClose={handleClose}/>
+            {editBook && (<EditBookModal show={showModal} handleClose={handleClose} 
+                isbn = {editBook.isbn} title = {editBook.title} author = {editBook.author} 
+                description = {editBook.description} quantity = {editBook.quantity}/>
+            )}
+
             </div>
             
         </div>

@@ -76,7 +76,7 @@ const WarehouseManager = () => {
 
             <br/>
             <button className="btn btn-success" onClick={handleShow}>Add</button>
-            <AddBookModal show={showModal} handleClose={handleClose} />
+            <AddBookModal show={showModal} handleClose={handleClose} warehouseId = {selectedWarehouseId} />
         </div>
         </>
     );
