@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.warehouse.models.Users;
-import com.example.warehouse.repositories.UsersRepository;
+import com.example.warehouse.services.UsersService;
 
 import java.util.List;
 
@@ -13,37 +13,30 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UsersRepository UsersRepository;
+    private UsersService usersService;
 
     @GetMapping
     public List<Users> getAllUsers() {
-        return UsersRepository.findAll();
+        return usersService.getAllUsers();
     }
 
     @PostMapping
     public Users createUser(@RequestBody Users user) {
-        return UsersRepository.save(user);
+        return usersService.createUser(user);
     }
 
     @GetMapping("/{id}")
     public Users getUserById(@PathVariable Long id) {
-        return UsersRepository.findById(id).orElse(null);
+        return usersService.getUserById(id);
     }
 
     @PutMapping("/{id}")
     public Users updateUser(@PathVariable Long id, @RequestBody Users userDetails) {
-        Users user = UsersRepository.findById(id).orElse(null);
-        if (user != null) {
-            user.setUsername(userDetails.getUsername());
-            user.setPassword(userDetails.getPassword());
-            user.setCompany(userDetails.getCompany());
-            return UsersRepository.save(user);
-        }
-        return null;
+        return usersService.updateUser(id, userDetails);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        UsersRepository.deleteById(id);
+        usersService.deleteUser(id);
     }
 }

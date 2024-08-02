@@ -1,4 +1,5 @@
 package com.example.warehouse.models;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -23,6 +24,15 @@ public class Warehouse {
     private Users manager;
 
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public Warehouse(){}
+    public Warehouse(Integer id, String name, String location, Integer capacity, Users manager) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.capacity = capacity;
+        this.manager = manager;
+    }
 
     public Integer getId() {
         return id;
