@@ -5,28 +5,33 @@ import WarehouseManager from './WareHouseManager'
 const MainPage = () => {
 
   //get initial info of company and 
-  const [id, setid] = useState('1');
 
-  const [childData, setChildData] = useState("");
+  // const [childData, setChildData] = useState("");
+  // useEffect(() => {
+  // fetch(`http://localhost:8080/warehouse/1`)
+  //       .then(response => response.json())
+  //       .then(data => setChildData(data))
+  //       .catch(error => console.error('Error fetching warehouse:', error));
+  //      }, []);
+
   useEffect(() => {
-  fetch(`http://localhost:8080/warehouse/1`)
-        .then(response => response.json())
-        .then(data => setChildData(data))
-        .catch(error => console.error('Error fetching warehouse:', error));
-       }, []);
-
+    fetch(`http://localhost:8080/warehouse/1`, {
+    method: "GET", // "GET/POST"
+    headers: {
+        "Content-Type": "application/json"
+    },
+       //Nothing to put but for POST: "body: JSON.stringify(data)"
+    })
+    .then(response => response.json())
+    .then(r => {
+    
+    console.log('=====DEBUG======\n=============================================')
+    console.log('Response', r); // You will get JSON response here.
+    }).catch(error => console.error('Error', error)) //Print error
+  }, []);
+       
   return (
-    <Container>
-      <Row className="d-flex justify-content-between align-items-center py-3">
 
-      
-      <header>
-        <div>
-          <h2>Phoenix Publishings</h2>
-          <p>Phoenix, AZ</p>
-        </div>
-      </header>
-      </Row>
       <Row>
       <main className="text-center my-4">
 
@@ -37,12 +42,8 @@ const MainPage = () => {
           </Col>
 
         </Row>
-
-      </main>
-
-      
+      </main> 
       </Row>
-    </Container>
   );
 };
 

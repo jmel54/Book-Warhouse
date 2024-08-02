@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import AddBookModal from './BookModal'
+import EditBookModal from './EditBookModal'
 const BookTable = ({ warehouseId, warehousename }) => {
-    const [books, setBooks] = useState([]);
 
     const [showModal, setShowModal] = useState(false);
-  
+    const [Books, setBooks] = useState([]);
+    const [editBook, setEditBook] = useState();
 
     //modal states
-      const handleShow = () => setShowModal(true);
-      const handleClose = () => setShowModal(false);
+    const handleShow = (book) => {
+        setEditBook(book);
+        setShowModal(true);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+        setEditBook(null);
+    };
 
     useEffect(() => {
         if (warehouseId) {
@@ -34,10 +41,10 @@ const BookTable = ({ warehouseId, warehousename }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {books.map(book => (
+                    {Books.map(book => (
                         <tr key={book.isbn}>
                             <td>
-                                <a href="#" onClick={() => handleShow(book)}>{book.isbn}</a>
+                                <a href="#" onClick={() => handleShow(book.isbn)}>{book.isbn}</a>
 
                             </td>
                             <td>{book.title}</td>
@@ -48,7 +55,10 @@ const BookTable = ({ warehouseId, warehousename }) => {
                     ))}
                 </tbody>
             </table>
-            <AddBookModal show={showModal} handleClose={handleClose} />
+            <div>
+            <EditBookModal show={showModal} handleClose={handleClose} isbn={editBook} />
+            </div>
+            
         </div>
     );
 };
