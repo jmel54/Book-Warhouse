@@ -20,14 +20,26 @@ public class Book {
 
     private String pictureUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
-    private Integer quantity = 0;
+    private Integer quantity;
 
     //log entry
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public Book(){}
+    public Book(String isbn, String title, String author, String description, String pictureUrl, Warehouse warehouse,
+            Integer quantity) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.pictureUrl = pictureUrl;
+        this.warehouse = warehouse;
+        this.quantity = quantity;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -87,10 +99,6 @@ public class Book {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     // Getters and Setters

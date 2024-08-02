@@ -2,6 +2,8 @@ package com.example.warehouse.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,8 +24,11 @@ public class Users {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Warehouse> warehouses = new ArrayList<>();
+
     public Users (){}
-    public Users(int id, String username, String password, String company){
+    public Users(Integer id, String username, String password, String company){
         this.id = id;
         this.username = username;
         this.password = password;

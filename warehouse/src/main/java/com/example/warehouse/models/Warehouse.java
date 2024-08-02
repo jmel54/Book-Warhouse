@@ -2,6 +2,8 @@ package com.example.warehouse.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "warehouse")
@@ -19,11 +21,15 @@ public class Warehouse {
 
     private Integer capacity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "manager_id")
     private Users manager;
 
+    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
+
     private LocalDateTime createdAt = LocalDateTime.now();
+
 
     public Warehouse(){}
     public Warehouse(Integer id, String name, String location, Integer capacity, Users manager) {
@@ -78,9 +84,6 @@ public class Warehouse {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
 
 }

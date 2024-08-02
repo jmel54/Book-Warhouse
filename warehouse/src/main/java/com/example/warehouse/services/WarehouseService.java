@@ -2,6 +2,7 @@ package com.example.warehouse.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.warehouse.models.Warehouse;
@@ -10,6 +11,7 @@ import com.example.warehouse.repositories.WarehouseRepository;
 @Service
 public class WarehouseService {
 
+    @Autowired
     private WarehouseRepository warehouseRepository;
     
     public WarehouseService(WarehouseRepository warehouseRepository) {

@@ -15,7 +15,7 @@ import com.example.warehouse.repositories.BookRepository;
 public class BookService {
     //implement repo interface
 
-
+    @Autowired
     private BookRepository bookRepository;
 
     public BookService(BookRepository bookRepository){
