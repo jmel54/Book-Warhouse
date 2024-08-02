@@ -15,6 +15,8 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
     @Query("SELECT w FROM Warehouse w WHERE w.manager.id = :userId")
     List<Warehouse> findWarehousesByUserId(@Param("userId") Integer userId);
 
+    
+
     //keeping here for future implementations
     Users findByUsername(String username);
 }

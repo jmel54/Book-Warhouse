@@ -2,6 +2,7 @@ package com.example.warehouse.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.example.warehouse.models.Book;
 import com.example.warehouse.models.Warehouse;
 import com.example.warehouse.services.WarehouseService;
 
@@ -30,12 +31,18 @@ public class WarehouseController {
     }
 
     @GetMapping("/{id}")
-    public Warehouse getWarehouseById(@PathVariable Long id) {
+    public Warehouse getWarehouseById(@PathVariable Integer id) {
         return warehouseService.getWarehouseById(id);
     }
 
+    
+    @GetMapping("/{id}/books")
+    public List<Book> getBooksByWarehouseId(@PathVariable Integer id) {
+        return warehouseService.getBooksByWarehouseId(id);
+    }
+
     @PutMapping("/{id}")
-    public Warehouse updateWarehouse(@PathVariable Long id, @RequestBody Warehouse warehouseDetails) {
+    public Warehouse updateWarehouse(@PathVariable Integer id, @RequestBody Warehouse warehouseDetails) {
 
         return warehouseService.updateWarehouse(id, warehouseDetails);
     }

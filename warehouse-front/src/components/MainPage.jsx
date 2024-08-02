@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, ProgressBar } from 'react-bootstrap';
-import AddBookModal from './BookModal';
-
+import { Container, Row, Col, ProgressBar } from 'react-bootstrap'
+import AddBookModal from './BookModal'
+import WarehouseManager from './WareHouseManager'
 const MainPage = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -30,6 +30,11 @@ const MainPage = () => {
           <Col xs="auto">
             <button className="btn btn-outline-primary mx-2">←</button>
           </Col>
+          
+          <Col>
+            <WarehouseManager />
+          </Col>
+
           <Col xs="auto">
             <button className="btn btn-outline-primary mx-2">→</button>
           </Col>
