@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
-
-const BookTable = ({ warehouseId }) => {
+import AddBookModal from './BookModal'
+const BookTable = ({ warehouseId, warehousename }) => {
     const [books, setBooks] = useState([]);
+
+    const [showModal, setShowModal] = useState(false);
+  
+
+    //modal states
+      const handleShow = () => setShowModal(true);
+      const handleClose = () => setShowModal(false);
 
     useEffect(() => {
         if (warehouseId) {
@@ -14,7 +21,7 @@ const BookTable = ({ warehouseId }) => {
 
     return (
         <div>
-            <h2>Books in Warehouse {warehouseId}</h2>
+            <h2>Books in {warehousename}</h2>
             <table className="table">
                 <thead>
                     <tr>
@@ -29,7 +36,10 @@ const BookTable = ({ warehouseId }) => {
                 <tbody>
                     {books.map(book => (
                         <tr key={book.isbn}>
-                            <td>{book.isbn}</td>
+                            <td>
+                                <a href="#" onClick={() => handleShow(book)}>{book.isbn}</a>
+
+                            </td>
                             <td>{book.title}</td>
                             <td>{book.author}</td>
                             <td>{book.description}</td>
@@ -38,6 +48,7 @@ const BookTable = ({ warehouseId }) => {
                     ))}
                 </tbody>
             </table>
+            <AddBookModal show={showModal} handleClose={handleClose} />
         </div>
     );
 };

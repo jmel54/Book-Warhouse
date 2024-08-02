@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class Users {
@@ -25,7 +27,9 @@ public class Users {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Warehouse> warehouses = new ArrayList<>();
+
 
     public Users (){}
     public Users(Integer id, String username, String password, String company){

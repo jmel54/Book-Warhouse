@@ -10,13 +10,15 @@ const BooksList = () => {
             .then(data => setBooks(data))
             .catch(error => console.error('Error fetching books:', error));
     }, []);
-
+{console.log(Object.keys(myObject)[0].id)}
     return (
         <div>
             <h1>Books List</h1>
             <ul>
                 {books.map(book => (
-                    <li key={book.isbn}>{book.isbn} for {book.title} by {book.author}. This book resides in Warehouse: {book.warehouse.id} whos manager's username is {book.warehouse.manager.username}</li>
+                    <li key={book.isbn}>{book.isbn} for {book.title} by {book.author}. 
+                    This book resides in Warehouse: {book.warehouse.id} whos manager's username is 
+                    {book.warehouse.manager.username}</li>
                 ))}
             </ul>
         </div>

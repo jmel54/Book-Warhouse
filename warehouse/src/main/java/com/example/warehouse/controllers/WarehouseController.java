@@ -54,7 +54,7 @@ public class WarehouseController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteWarehouse(@PathVariable Long id) {
+    public void deleteWarehouse(@PathVariable Integer id) {
         warehouseService.deleteWarehouse(id);
     }
 }

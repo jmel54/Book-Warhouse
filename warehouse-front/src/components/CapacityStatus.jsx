@@ -14,7 +14,7 @@ const WarehouseDetails = ({ warehouseId }) => {
                 .catch(error => {
                     console.error('Error fetching warehouse:', error);
                     setError(error);
-                });
+                }, []);
 
             // Fetch total book quantity
             fetch(`http://localhost:8080/warehouse/${warehouseId}/totalBooks`)

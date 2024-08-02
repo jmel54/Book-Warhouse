@@ -18,6 +18,10 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private WarehouseService warehouseService;
+
+
     public BookService(BookRepository bookRepository){
         this.bookRepository = bookRepository;
     }
@@ -27,7 +31,7 @@ public class BookService {
     }
 
     public Book createBook(Book book) {
-        
+        warehouseService
         return bookRepository.save(book);
     }
 
